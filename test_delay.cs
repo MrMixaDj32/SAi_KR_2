@@ -19,7 +19,7 @@ namespace SAi_KR
             for (int i = 0; i < 3000; i++) engineFixed.Step(0.1);
             Console.WriteLine($"[1] ФИКСИРОВАННЫЙ: Задержка = {engineFixed.GetAverageWaitTime():F2} с | Очередь = {engineFixed.GetTotalQueue()} | Проехало = {engineFixed.CompletedVehicles.Count}");
 
-            // Test AI with default BiasOutput = -0.8
+            // Тестирование ИИ со смещением выходного слоя по умолчанию (-0.8)
             var engineAI = new SimulationEngine();
             engineAI.ResetWithSeed(42);
             engineAI.InflowSevernayaWest = 1600;

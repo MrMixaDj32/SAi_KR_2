@@ -553,10 +553,10 @@ namespace SAi_KR
             g.SmoothingMode = SmoothingMode.AntiAlias;
             g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
 
-            // 1. Background & Terrain
+            // 1. Задний план и окружающая территория
             g.Clear(Color.FromArgb(45, 52, 45));
 
-            // Background buildings (dark rectangles with outlines)
+            // Фоновые здания кварталов (прямоугольники с контуром)
             using (var bBrush = new SolidBrush(Color.FromArgb(35, 40, 35)))
             using (var bPen = new Pen(Color.FromArgb(30, 35, 30), 1))
             {
@@ -576,7 +576,7 @@ namespace SAi_KR
                 }
             }
 
-            // Green park areas
+            // Зеленые парковые зоны
             using (var parkBrush = new SolidBrush(Color.FromArgb(30, 60, 35)))
             using (var treeBrush = new SolidBrush(Color.FromArgb(20, 80, 30)))
             using (var alleyBrush = new SolidBrush(Color.FromArgb(85, 90, 85)))
@@ -611,7 +611,7 @@ namespace SAi_KR
                     }
             }
 
-            // TRC Galereya
+            // ТРЦ «Галерея»
             using (var mallBrush = new SolidBrush(Color.FromArgb(50, 45, 55)))
             using (var mallPen = new Pen(Color.FromArgb(40, 35, 45), 2))
             {
@@ -620,7 +620,7 @@ namespace SAi_KR
                 g.DrawRectangle(mallPen, mall);
             }
 
-            // 2. Road Surface
+            // 2. Дорожное полотно и разметка
             using (var roadBrush = new SolidBrush(Color.FromArgb(55, 55, 55)))
             using (var dashPen = new Pen(Color.White, 2) { DashStyle = DashStyle.Dash })
             using (var solidWhitePen = new Pen(Color.White, 2))
@@ -746,7 +746,7 @@ namespace SAi_KR
             }
 
             // Дорожная стрелочная разметка на асфальте (ГОСТ 51256, разметка 1.18)
-            // 1. Ул. Северная — Восток (слева направо, angle = 0)
+            // 1. Ул. Северная — Восток (слева направо, угол = 0)
             DrawRoadArrow(g, 140, 439, 0, RoadManeuver.Straight);
             DrawRoadArrow(g, 140, 460, 0, RoadManeuver.Straight);
             DrawRoadArrow(g, 540, 439, 0, RoadManeuver.Straight);
@@ -754,7 +754,7 @@ namespace SAi_KR
             DrawRoadArrow(g, 970, 439, 0, RoadManeuver.Right); // перед Красной: только направо (вниз)
             DrawRoadArrow(g, 970, 460, 0, RoadManeuver.Right); // перед Красной: только направо (вниз)
 
-            // 2. Ул. Северная — Запад (справа налево, angle = 180)
+            // 2. Ул. Северная — Запад (справа налево, угол = 180)
             DrawRoadArrow(g, 1350, 396, 180, RoadManeuver.Straight);
             DrawRoadArrow(g, 1350, 416, 180, RoadManeuver.Straight);
             DrawRoadArrow(g, 1120, 396, 180, RoadManeuver.Straight);
@@ -764,15 +764,15 @@ namespace SAi_KR
             DrawRoadArrow(g, 350, 396, 180, RoadManeuver.Straight);
             DrawRoadArrow(g, 350, 416, 180, RoadManeuver.Straight);
 
-            // 3. Ул. Октябрьская — выезд от Галереи (снизу вверх, angle = -90)
+            // 3. Ул. Октябрьская — выезд от Галереи (снизу вверх, угол = -90)
             DrawRoadArrow(g, 245, 540, -90, RoadManeuver.Left);  // левый ряд: налево на Северную
             DrawRoadArrow(g, 270, 540, -90, RoadManeuver.Right); // правый ряд: направо на Северную
 
             // 4. Ул. Рашпилевская — Север (двусторонняя)
-            DrawRoadArrow(g, 645, 230, 90, RoadManeuver.Straight);  // въезд на юг (angle = 90)
-            DrawRoadArrow(g, 675, 230, -90, RoadManeuver.Straight); // выезд на север (angle = -90)
+            DrawRoadArrow(g, 645, 230, 90, RoadManeuver.Straight);  // въезд на юг (угол = 90)
+            DrawRoadArrow(g, 675, 230, -90, RoadManeuver.Straight); // выезд на север (угол = -90)
 
-            // 5. Ул. Рашпилевская — Юг (односторонняя на юг, обе полосы вниз, angle = 90)
+            // 5. Ул. Рашпилевская — Юг (односторонняя на юг, обе полосы вниз, угол = 90)
             DrawRoadArrow(g, 645, 540, 90, RoadManeuver.Straight);
             DrawRoadArrow(g, 675, 540, 90, RoadManeuver.Straight);
             DrawRoadArrow(g, 645, 720, 90, RoadManeuver.Straight);
@@ -780,36 +780,36 @@ namespace SAi_KR
 
             // 6. Ул. Красная — Северные рукава
             DrawRoadArrow(g, 1045, 230, 90, RoadManeuver.StraightAndRight); // левый рукав вниз: прямо и направо на Северную
-            DrawRoadArrow(g, 1185, 230, -90, RoadManeuver.Straight);        // правый рукав вверх (полоса 1, angle = -90)
-            DrawRoadArrow(g, 1205, 230, -90, RoadManeuver.Straight);        // правый рукав вверх (полоса 2, angle = -90)
+            DrawRoadArrow(g, 1185, 230, -90, RoadManeuver.Straight);        // правый рукав вверх (полоса 1, угол = -90)
+            DrawRoadArrow(g, 1205, 230, -90, RoadManeuver.Straight);        // правый рукав вверх (полоса 2, угол = -90)
 
-            // 7. Ул. Красная — Южный левый рукав (движение вниз, angle = 90)
+            // 7. Ул. Красная — Южный левый рукав (движение вниз, угол = 90)
             DrawRoadArrow(g, 1045, 540, 90, RoadManeuver.Straight);
             DrawRoadArrow(g, 1065, 540, 90, RoadManeuver.Straight);
             DrawRoadArrow(g, 1045, 720, 90, RoadManeuver.Straight);
             DrawRoadArrow(g, 1065, 720, 90, RoadManeuver.Straight);
 
-            // 8. Ул. Красная — Южный правый рукав (движение вверх, angle = -90)
+            // 8. Ул. Красная — Южный правый рукав (движение вверх, угол = -90)
             DrawRoadArrow(g, 1185, 540, -90, RoadManeuver.StraightAndLeft); // левый ряд: прямо и налево на Северную
             DrawRoadArrow(g, 1205, 540, -90, RoadManeuver.Straight);        // правый ряд: прямо вверх
             DrawRoadArrow(g, 1185, 720, -90, RoadManeuver.StraightAndLeft);
             DrawRoadArrow(g, 1205, 720, -90, RoadManeuver.Straight);
 
-            // Crosswalks (Пешеходные переходы - Зебра)
+            // Пешеходные переходы (разметка 1.14 «Зебра»)
             using (var zebraPen = new Pen(Color.White, 3) { DashStyle = DashStyle.Dash })
             {
-                // Oktyabrskaya
+                // Ул. Октябрьская
                 g.DrawLine(zebraPen, 230, 480, 285, 480);
                 g.DrawLine(zebraPen, 205, 385, 205, 470);
                 g.DrawLine(zebraPen, 300, 385, 300, 470);
 
-                // Rashpilevskaya
+                // Ул. Рашпилевская
                 g.DrawLine(zebraPen, 630, 375, 690, 375);
                 g.DrawLine(zebraPen, 630, 480, 690, 480);
                 g.DrawLine(zebraPen, 610, 385, 610, 470);
                 g.DrawLine(zebraPen, 705, 385, 705, 470);
 
-                // Krasnaya (рукава бульвара и переход между бульварами)
+                // Ул. Красная (рукава бульвара и переход между бульварами)
                 g.DrawLine(zebraPen, 1035, 375, 1075, 375);
                 g.DrawLine(zebraPen, 1175, 375, 1215, 375);
                 g.DrawLine(zebraPen, 1035, 480, 1075, 480);
@@ -822,20 +822,20 @@ namespace SAi_KR
                 g.DrawLine(zebraPen, 1175, 375, 1175, 470);
             }
 
-            // Stop Lines (Стоп-линии)
+            // Стоп-линии (разметка 1.12)
             using (var stopPen = new Pen(Color.White, 4))
             {
-                // Oktyabrskaya
+                // Ул. Октябрьская
                 g.DrawLine(stopPen, 210, 429, 210, 470); // Северная Восток
                 g.DrawLine(stopPen, 295, 385, 295, 426); // Северная Запад
                 g.DrawLine(stopPen, 230, 480, 285, 480); // Октябрьская
 
-                // Rashpilevskaya
+                // Ул. Рашпилевская
                 g.DrawLine(stopPen, 615, 429, 615, 470); // Северная Восток
                 g.DrawLine(stopPen, 700, 385, 700, 426); // Северная Запад
                 g.DrawLine(stopPen, 630, 375, 660, 375); // Рашпилевская Север (левый входящий ряд)
 
-                // Krasnaya
+                // Ул. Красная
                 g.DrawLine(stopPen, 1015, 429, 1015, 470); // Северная Восток (перед поворотом направо)
                 g.DrawLine(stopPen, 1225, 385, 1225, 426); // Северная Запад
                 g.DrawLine(stopPen, 1035, 375, 1075, 375); // Красная Север (левый рукав, движение вниз)
@@ -845,7 +845,7 @@ namespace SAi_KR
                 g.DrawLine(stopPen, 1075, 385, 1075, 426);
             }
 
-            // 3. Traffic Lights (СВЕТОФОРЫ НА ВСЕХ ПЕРЕКРЕСТКАХ И ВСЕХ НАПРАВЛЕНИЯХ)
+            // 3. Светофоры (на всех перекрестках и направлениях)
             if (_engine.Intersections.Count >= 3)
             {
                 // --- ПЕРЕКРЕСТОК 1: СЕВЕРНАЯ / ОКТЯБРЬСКАЯ ---
@@ -872,7 +872,7 @@ namespace SAi_KR
                 DrawTrafficLightBox(g, 1080, 315, GetLightState(n3, n3_SevActive));
             }
 
-            // 4. Vehicles
+            // 4. Отрисовка транспортных средств
             foreach (var lane in _engine.AllLanes)
             {
                 foreach (var car in lane.Vehicles)
@@ -966,7 +966,7 @@ namespace SAi_KR
                 g.DrawLine(wavePen, x2, y, x3, y);
             }
 
-            // Glowing nodes
+            // Светящиеся узлы координации
             float pulse = (float)(Math.Sin(_simulatedTime * 4.0) * 2.0);
             using (var glowBrush = new SolidBrush(Color.FromArgb(100, 0, 220, 255)))
             using (var dotBrush = new SolidBrush(Color.FromArgb(0, 240, 255)))
@@ -978,7 +978,7 @@ namespace SAi_KR
                 }
             }
 
-            // Central badge
+            // Центральный информационный шильдик
             RectangleF badge = new RectangleF(390, y - 12, 275, 24);
             using (var bgBrush = new SolidBrush(Color.FromArgb(230, 15, 25, 35)))
             using (var borderPen = new Pen(Color.FromArgb(0, 200, 255), 1.2f))
@@ -1024,14 +1024,14 @@ namespace SAi_KR
                     double t = item.Node.TimeInCurrentPhase;
                     int ph = item.Node.CurrentPhaseIndex + 1;
 
-                    // Title
+                    // Заголовок узла
                     g.DrawString(item.Name, titleFont, Brushes.White, r.X + 6, r.Y + 4);
 
-                    // Phase & Queue
+                    // Номер фазы и текущая очередь
                     string pqTxt = $"Фаза {ph}: {t:F0}с | Очередь: {q} авт.";
                     g.DrawString(pqTxt, infoFont, Brushes.LightGray, r.X + 6, r.Y + 22);
 
-                    // Decision text
+                    // Обоснование принятого решения
                     string decTxt;
                     Brush decBrush;
                     if (rbAI.Checked && item.Agent != null)
@@ -1050,7 +1050,7 @@ namespace SAi_KR
                     }
                     g.DrawString(decTxt, decFont, decBrush, r.X + 6, r.Y + 38);
 
-                    // Mini Queue Bar at bottom
+                    // Полоса очереди внизу панели
                     float barW = w - 12f;
                     float barFill = Math.Min(barW, (q / 15f) * barW);
                     Color barCol = q <= 4 ? Color.FromArgb(0, 200, 100) : (q <= 8 ? Color.FromArgb(235, 180, 20) : Color.FromArgb(235, 60, 50));
@@ -1107,18 +1107,18 @@ namespace SAi_KR
 
         private void DrawTrafficLightBox(Graphics g, float x, float y, LightState state, string? label = null)
         {
-            // Box dimensions: compact and crisp
+            // Габариты корпуса светофора
             float boxW = 20f;
             float boxH = 54f;
             RectangleF box = new RectangleF(x - boxW / 2f, y, boxW, boxH);
 
-            // Pole
+            // Опора (столб)
             using (var polePen = new Pen(Color.FromArgb(120, 120, 125), 2.5f))
             {
                 g.DrawLine(polePen, x, y + boxH, x, y + boxH + 20f);
             }
 
-            // Housing
+            // Корпус светофора
             using (var boxBrush = new SolidBrush(Color.FromArgb(24, 26, 28)))
             using (var boxPen = new Pen(Color.FromArgb(90, 95, 100), 1f))
             using (var path = GetRoundedRect(box, 3.5f))
@@ -1127,7 +1127,7 @@ namespace SAi_KR
                 g.DrawPath(boxPen, path);
             }
 
-            // Signals: Red, Yellow, Green
+            // Сигналы: красный, желтый, зеленый
             float sRedY = y + 9f;
             float sYelY = y + 27f;
             float sGrnY = y + 45f;
@@ -1136,7 +1136,7 @@ namespace SAi_KR
             DrawSignal(g, x, sYelY, Color.FromArgb(255, 200, 20), state == LightState.Yellow);
             DrawSignal(g, x, sGrnY, Color.FromArgb(30, 230, 60), state == LightState.Green);
 
-            // Label Badge
+            // Информационная табличка
             if (!string.IsNullOrEmpty(label))
             {
                 using (var badgeFont = new Font("Segoe UI", 7.5f, FontStyle.Bold))
@@ -1159,17 +1159,17 @@ namespace SAi_KR
             float r = 5.0f;
             if (active)
             {
-                // Glow halo
+                // Свечение ореола сигнала
                 using (var glowBrush = new SolidBrush(Color.FromArgb(90, baseColor.R, baseColor.G, baseColor.B)))
                 {
                     g.FillEllipse(glowBrush, x - r - 4f, y - r - 4f, (r + 4f) * 2f, (r + 4f) * 2f);
                 }
-                // Bright core
+                // Яркое ядро активного сигнала
                 using (var activeBrush = new SolidBrush(baseColor))
                 {
                     g.FillEllipse(activeBrush, x - r, y - r, r * 2f, r * 2f);
                 }
-                // Specular highlight glint
+                // Блик на линзе светофора
                 using (var glintBrush = new SolidBrush(Color.FromArgb(220, 255, 255, 255)))
                 {
                     g.FillEllipse(glintBrush, x - r + 1.5f, y - r + 1.5f, 2.5f, 2.5f);
@@ -1177,7 +1177,7 @@ namespace SAi_KR
             }
             else
             {
-                // Dark off-state lens
+                // Затемненная линза неактивного сигнала
                 using (var dimBrush = new SolidBrush(Color.FromArgb(45, baseColor.R / 4, baseColor.G / 4, baseColor.B / 4)))
                 using (var dimPen = new Pen(Color.FromArgb(30, 30, 35), 0.8f))
                 {
@@ -1326,10 +1326,10 @@ namespace SAi_KR
         {
             var (renderPos, angleRad) = lane.GetRenderPositionWithAngle(car.Position);
 
-            // WinForms Graphics.RotateTransform expects degrees, Math.Atan2 returns radians
+            // Метод Graphics.RotateTransform принимает градусы, перевод из радианов
             float angleDeg = (float)(angleRad * 180.0 / Math.PI);
 
-            // Scale vehicle dimensions to screen pixels
+            // Масштабирование габаритов автомобиля в экранные пиксели
             float vLength = (float)(car.Length * SimulationEngine.PxPerMeter);
             float vWidth = (float)(car.VehicleWidth * SimulationEngine.PxPerMeter);
             if (vLength < 12f) vLength = 12f;
@@ -1339,13 +1339,13 @@ namespace SAi_KR
             g.TranslateTransform(renderPos.X, renderPos.Y);
             g.RotateTransform(angleDeg);
 
-            // 1. Soft shadow under vehicle
+            // 1. Тень под автомобилем
             using (var shadowBrush = new SolidBrush(Color.FromArgb(80, 15, 20, 15)))
             {
                 g.FillRectangle(shadowBrush, -vLength / 2f + 1f, -vWidth / 2f + 1.5f, vLength, vWidth);
             }
 
-            // 2. Car body
+            // 2. Кузов автомобиля
             Color bodyColor = car.VehicleColor;
             if (bodyColor.IsEmpty)
                 bodyColor = car.Speed < 0.5 ? Color.OrangeRed : Color.DeepSkyBlue;
@@ -1364,7 +1364,7 @@ namespace SAi_KR
                 g.DrawPath(carPen, path);
             }
 
-            // 3. Cabin glass & roof
+            // 3. Остекление салона и крыша
             float roofLength = vLength * 0.42f;
             float roofWidth = vWidth * 0.72f;
 
@@ -1374,17 +1374,17 @@ namespace SAi_KR
                 Math.Max(0, bodyColor.G - 25),
                 Math.Max(0, bodyColor.B - 25))))
             {
-                // Cabin glass area
+                // Область остекления салона
                 float cabX = -vLength * 0.22f;
                 float cabW = vLength * 0.58f;
                 float cabH = vWidth * 0.76f;
                 g.FillRectangle(glassBrush, cabX, -cabH / 2f, cabW, cabH);
 
-                // Roof block in center
+                // Крыша автомобиля
                 g.FillRectangle(roofBrush, -roofLength / 2f - 0.5f, -roofWidth / 2f, roofLength, roofWidth);
             }
 
-            // 4. Front headlights
+            // 4. Передние фары
             using (var hlBrush = new SolidBrush(Color.FromArgb(255, 255, 255, 210)))
             {
                 float hlW = 2.2f;
@@ -1393,10 +1393,10 @@ namespace SAi_KR
                 g.FillRectangle(hlBrush, vLength / 2f - 2f, vWidth / 2f - 2.8f, hlW, hlH);
             }
 
-            // 5. Tail lights / Brake lights
+            // 5. Задние фонари и стоп-сигналы
             if (car.Speed < 0.5)
             {
-                // Active bright red brake lights with glow halo
+                // Активные стоп-сигналы при торможении со свечением
                 using (var glowBrake = new SolidBrush(Color.FromArgb(120, 255, 0, 0)))
                 using (var brakeBrush = new SolidBrush(Color.FromArgb(255, 255, 30, 30)))
                 {
@@ -1409,7 +1409,7 @@ namespace SAi_KR
             }
             else
             {
-                // Standard running tail lights
+                // Стандартные задние габаритные огни
                 using (var tailBrush = new SolidBrush(Color.FromArgb(210, 170, 20, 20)))
                 {
                     g.FillRectangle(tailBrush, -vLength / 2f, -vWidth / 2f + 0.8f, 1.8f, 2.0f);

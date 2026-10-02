@@ -265,7 +265,7 @@ namespace SAi_KR
             inKras_SE_Left.AlternativeNextLanes.Add(turnKras_S_Sev); // Налево на Северную через светофор между бульварами
 
             // ====== 6. Светофорные фазы ======
-            // Октябрьская (Incoming: 0=SevE_L1, 1=SevE_L2, 2=SevW_L1, 3=SevW_L2, 4=OktRight, 5=OktLeft)
+            // Октябрьская (Входящие полосы: 0=SevE_L1, 1=SevE_L2, 2=SevW_L1, 3=SevW_L2, 4=OktRight, 5=OktLeft)
             nodeOktyabrskaya.AddIncomingLane(inWest_L1);       // 0
             nodeOktyabrskaya.AddIncomingLane(inWest_L2);       // 1
             nodeOktyabrskaya.AddIncomingLane(laneSev21_W_L1);  // 2
@@ -275,7 +275,7 @@ namespace SAi_KR
             nodeOktyabrskaya.AddPhase(new TrafficPhase(40.0, 0, 1, 2, 3));
             nodeOktyabrskaya.AddPhase(new TrafficPhase(22.0, 4, 5));
 
-            // Рашпилевская (Incoming: 0=SevE_L1, 1=SevE_L2, 2=SevW_L1, 3=SevW_L2, 4=RashN)
+            // Рашпилевская (Входящие полосы: 0=SevE_L1, 1=SevE_L2, 2=SevW_L1, 3=SevW_L2, 4=RashN)
             nodeRashpilevskaya.AddIncomingLane(laneSev12_E_L1); // 0
             nodeRashpilevskaya.AddIncomingLane(laneSev12_E_L2); // 1
             nodeRashpilevskaya.AddIncomingLane(laneSev32_W_L1); // 2
@@ -284,10 +284,10 @@ namespace SAi_KR
             nodeRashpilevskaya.AddPhase(new TrafficPhase(38.0, 0, 1, 2, 3));
             nodeRashpilevskaya.AddPhase(new TrafficPhase(20.0, 4));
 
-            // Красная (Incoming: 0=SevE_L1 (направо вниз), 1=SevE_L2 (направо вниз),
-            //                    2=SevW_East_L1, 3=SevW_East_L2, 4=KrasNW (вниз), 5=KrasSE_Str, 6=KrasSE_Left,
-            //                    7=Turn_Kras_S_Sev (светофор между бульварами),
-            //                    8=Lane_Sev_Mid_Boulevard_L1, 9=Lane_Sev_Mid_Boulevard_L2)
+            // Красная (Входящие полосы: 0=SevE_L1 (направо вниз), 1=SevE_L2 (направо вниз),
+            //                          2=SevW_East_L1, 3=SevW_East_L2, 4=KrasNW (вниз), 5=KrasSE_Str, 6=KrasSE_Left,
+            //                          7=Turn_Kras_S_Sev (светофор между бульварами),
+            //                          8=Lane_Sev_Mid_Boulevard_L1, 9=Lane_Sev_Mid_Boulevard_L2)
             nodeKrasnaya.AddIncomingLane(laneSev23_E_L1);            // 0
             nodeKrasnaya.AddIncomingLane(laneSev23_E_L2);            // 1
             nodeKrasnaya.AddIncomingLane(inEast_L1);                 // 2
@@ -357,7 +357,7 @@ namespace SAi_KR
                 {
                     bool isBlocked = node.IsLaneBlocked(lane);
 
-                    // ПДД РФ 13.2 (Anti-Gridlock): Запрет выезда на перекресток при заторе за ним
+                    // ПДД РФ 13.2 (предотвращение блокировки перекрестка): Запрет выезда на перекресток при заторе за ним
                     if (!isBlocked && (lane.Id == "Inflow_Sev_East_L1" || lane.Id == "Inflow_Sev_East_L2"))
                     {
                         var midLane = lane.Id.EndsWith("L1") ? _laneSevMidBoulevardL1 : _laneSevMidBoulevardL2;
@@ -389,7 +389,7 @@ namespace SAi_KR
             }
 
             int prevCompleted = CompletedVehicles.Count;
-            // 3. Продвижение автомобилей (downstream к upstream)
+            // 3. Продвижение автомобилей (по направлению потока, от выходов к входам)
             for (int i = AllLanes.Count - 1; i >= 0; i--)
             {
                 AllLanes[i].AdvanceVehicles(CompletedVehicles);
@@ -399,7 +399,7 @@ namespace SAi_KR
             // 4. Интеллектуальное предотвращение столкновений
             PreventIntersectionCollisions(dt);
 
-            // 5. Обновление live статистики для текущего режима (сравнение в реальном времени)
+            // 5. Обновление оперативной статистики для текущего режима (в реальном времени)
             var activeStats = CurrentControlMode == ControlMode.FixedTime ? FixedModeStats : AIModeStats;
             activeStats.StepsCount++;
             int currentQ = GetTotalQueue();
@@ -494,7 +494,7 @@ namespace SAi_KR
                     }
                     else
                     {
-                        // Тот, кто сзади, уступает тому, кто впереди (distLong > 0 означает B впереди A)
+                        // Следующий сзади автомобиль уступает тому, кто впереди (положительное продольное расстояние означает, что B впереди A)
                         yieldCar = (distLong > 0) ? a.Car : b.Car;
                     }
 

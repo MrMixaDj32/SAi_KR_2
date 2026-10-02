@@ -163,7 +163,7 @@ namespace SAi_KR
 
             mainLayout.Controls.Add(_dgv, 0, 0);
 
-            // Панель графика (Bar Chart)
+            // Панель столбчатой диаграммы
             _chartPanel = new Panel
             {
                 Dock = DockStyle.Fill,
@@ -309,14 +309,14 @@ namespace SAi_KR
                 {
                     int groupX = 55 + i * groupWidth;
 
-                    // Столбец 1: Fixed
+                    // Столбец 1: Фиксированный режим (ГОСТ)
                     double fH = (fixedVals[i] / maxVal) * chartHeight;
                     float fY = chartBottom - (float)fH;
                     float fX = groupX;
                     g.FillRectangle(barFixedBrush, fX, fY, barWidth, (float)fH);
                     g.DrawString($"{fixedVals[i]:F1}", valFont, Brushes.White, fX - 2, fY - 18);
 
-                    // Столбец 2: AI
+                    // Столбец 2: Адаптивный режим (ИИ)
                     double aH = (aiVals[i] / maxVal) * chartHeight;
                     float aY = chartBottom - (float)aH;
                     float aX = groupX + barWidth + 5;

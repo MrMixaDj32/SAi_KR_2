@@ -3,14 +3,14 @@ namespace SAi_KR
     partial class Form1
     {
         /// <summary>
-        ///  Required designer variable.
+        /// Обязательная переменная конструктора.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        ///  Clean up any resources being used.
+        /// Освободить все используемые ресурсы.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">Истинно, если управляемые ресурсы должны быть удалены; иначе ложно.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -23,8 +23,8 @@ namespace SAi_KR
         #region Windows Form Designer generated code
 
         /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
+        /// Требуемый метод для поддержки конструктора — не изменяйте 
+        /// содержимое этого метода с помощью редактора кода.
         /// </summary>
         private void InitializeComponent()
         {
@@ -78,7 +78,7 @@ namespace SAi_KR
             dgvTelemetry.Size = new Size(1720, 377);
             dgvTelemetry.TabIndex = 1;
             // 
-            // gbControl
+            // Панель gbControl
             // 
             gbControl.Controls.Add(btnStartPause);
             gbControl.Controls.Add(btnTrain);
@@ -96,7 +96,7 @@ namespace SAi_KR
             gbControl.TabStop = false;
             gbControl.Text = "Управление симуляцией";
             // 
-            // btnStartPause
+            // Кнопка btnStartPause
             // 
             btnStartPause.Font = new Font("Segoe UI", 10.875F, FontStyle.Bold, GraphicsUnit.Point, 204);
             btnStartPause.Location = new Point(30, 50);
@@ -106,7 +106,7 @@ namespace SAi_KR
             btnStartPause.Text = "Старт";
             btnStartPause.UseVisualStyleBackColor = true;
             // 
-            // btnTrain
+            // Кнопка btnTrain
             // 
             btnTrain.Location = new Point(30, 640);
             btnTrain.Name = "btnTrain";
@@ -115,7 +115,7 @@ namespace SAi_KR
             btnTrain.Text = "Обучить агентов (Генетический алгоритм)";
             btnTrain.UseVisualStyleBackColor = true;
             // 
-            // nudFlow
+            // Поле ввода nudFlow
             // 
             nudFlow.Increment = new decimal(new int[] { 100, 0, 0, 0 });
             nudFlow.Location = new Point(40, 305);
@@ -126,7 +126,7 @@ namespace SAi_KR
             nudFlow.TabIndex = 8;
             nudFlow.Value = new decimal(new int[] { 1200, 0, 0, 0 });
             // 
-            // lblFlow
+            // Метка lblFlow
             // 
             lblFlow.AutoSize = true;
             lblFlow.Location = new Point(36, 265);
@@ -135,7 +135,7 @@ namespace SAi_KR
             lblFlow.TabIndex = 7;
             lblFlow.Text = "Интенсивность по Северной (авт/ч):";
             // 
-            // tbSpeed
+            // Ползунок tbSpeed
             // 
             tbSpeed.Location = new Point(30, 185);
             tbSpeed.Minimum = 1;
@@ -144,7 +144,7 @@ namespace SAi_KR
             tbSpeed.TabIndex = 6;
             tbSpeed.Value = 1;
             // 
-            // lblSpeed
+            // Метка lblSpeed
             // 
             lblSpeed.AutoSize = true;
             lblSpeed.Location = new Point(36, 145);
@@ -153,7 +153,7 @@ namespace SAi_KR
             lblSpeed.TabIndex = 3;
             lblSpeed.Text = "Скорость симуляции: x1";
             // 
-            // rbAI
+            // Переключатель rbAI
             // 
             rbAI.AutoSize = true;
             rbAI.Location = new Point(40, 400);
@@ -164,7 +164,7 @@ namespace SAi_KR
             rbAI.Text = "Мультиагентная ИНС + База правил";
             rbAI.UseVisualStyleBackColor = true;
             // 
-            // rbFixedTime
+            // Переключатель rbFixedTime
             // 
             rbFixedTime.AutoSize = true;
             rbFixedTime.Checked = true;
@@ -176,7 +176,7 @@ namespace SAi_KR
             rbFixedTime.Text = "Фиксированный цикл (ГОСТ)";
             rbFixedTime.UseVisualStyleBackColor = true;
             // 
-            // btnReset
+            // Кнопка btnReset
             // 
             btnReset.Font = new Font("Segoe UI", 10.875F, FontStyle.Regular, GraphicsUnit.Point, 204);
             btnReset.Location = new Point(375, 50);
@@ -186,7 +186,7 @@ namespace SAi_KR
             btnReset.Text = "Сброс";
             btnReset.UseVisualStyleBackColor = true;
             // 
-            // gbStats
+            // Панель gbStats
             // 
             gbStats.Controls.Add(lblTrainStatus);
             gbStats.Controls.Add(lblPassed);
@@ -199,7 +199,7 @@ namespace SAi_KR
             gbStats.TabStop = false;
             gbStats.Text = "Показатели эффективности";
             // 
-            // lblTrainStatus
+            // Метка lblTrainStatus
             // 
             lblTrainStatus.Font = new Font("Segoe UI", 16.875F, FontStyle.Regular, GraphicsUnit.Point, 204);
             lblTrainStatus.Location = new Point(40, 290);
@@ -208,7 +208,7 @@ namespace SAi_KR
             lblTrainStatus.TabIndex = 3;
             lblTrainStatus.Text = "Статус ИИ: Исходные веса";
             // 
-            // lblPassed
+            // Метка lblPassed
             // 
             lblPassed.AutoSize = true;
             lblPassed.Font = new Font("Segoe UI", 10.125F, FontStyle.Regular, GraphicsUnit.Point, 204);
@@ -218,7 +218,7 @@ namespace SAi_KR
             lblPassed.TabIndex = 2;
             lblPassed.Text = "Пропущено машин: 0";
             // 
-            // lblTotalQueue
+            // Метка lblTotalQueue
             // 
             lblTotalQueue.AutoSize = true;
             lblTotalQueue.Font = new Font("Segoe UI", 10.125F, FontStyle.Regular, GraphicsUnit.Point, 204);
@@ -228,7 +228,7 @@ namespace SAi_KR
             lblTotalQueue.TabIndex = 1;
             lblTotalQueue.Text = "Суммарная очередь: 0 авт.";
             // 
-            // lblAvgWait
+            // Метка lblAvgWait
             // 
             lblAvgWait.AutoSize = true;
             lblAvgWait.Font = new Font("Segoe UI", 10.125F, FontStyle.Bold, GraphicsUnit.Point, 204);
@@ -238,11 +238,11 @@ namespace SAi_KR
             lblAvgWait.TabIndex = 0;
             lblAvgWait.Text = "Средняя задержка: 0.00 с";
             // 
-            // tmrSim
+            // Таймер tmrSim
             // 
             tmrSim.Interval = 40;
             // 
-            // Form1
+            // Главная форма Form1
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;

@@ -8,7 +8,7 @@ namespace SAi_KR
     internal static class Program
     {
         /// <summary>
-        ///  The main entry point for the application.
+        /// Главная точка входа для приложения.
         /// </summary>
         [STAThread]
         static void Main(string[] args)
@@ -31,8 +31,7 @@ namespace SAi_KR
                 return;
             }
 
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+            // Инициализация конфигурации приложения, включая настройки масштабирования High DPI и системные шрифты
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
         }
@@ -201,7 +200,7 @@ namespace SAi_KR
 
                 // ТЕСТ 4: Правила безопасности (SafetyRuleEngine)
                 var ruleEngine = new SafetyRuleEngine();
-                // Правило 1: Yellow/AllRed блокировка
+                // Правило 1: Блокировка во время тактов желтого и AllRed сигналов
                 var f1 = new TrafficFacts { IsYellowActive = true, CurrentPhaseDuration = 20 };
                 bool r1 = ruleEngine.ValidatePhaseSwitch(f1, out string re1);
                 Assert(!r1 && re1.Contains("Правило 1"), "Тест 4.1: Правило 1 блокирует переключение во время желтого/AllRed");
@@ -269,7 +268,7 @@ namespace SAi_KR
                 Assert(ag1.NeighborEast == ag2 && ag2.NeighborWest == ag1 && ag2.NeighborEast == ag3 && ag3.NeighborWest == ag2,
                     "Тест 7.2: Двунаправленная связность агентов коридора (Октябрьская <-> Рашпилевская <-> Красная)");
 
-                // Тест 7.3: Вектор состояния агента (включая координационный сигнал state[7])
+                // Тест 7.3: Вектор состояния агента (включая координационный сигнал)
                 double[] state2 = ag2.CollectState();
                 Assert(state2.Length == 8 && state2.All(v => !double.IsNaN(v) && !double.IsInfinity(v) && v >= 0 && v <= 1.0),
                     "Тест 7.3: Вектор состояния агента Рашпилевской корректен (8 нормированных входов [0..1])");
@@ -285,7 +284,7 @@ namespace SAi_KR
                 Assert(krasNode.CurrentPhaseIndex == 1 && krasNode.IsLaneBlocked(midLane) && krasNode.IsLaneBlocked(leftTurnKras),
                     "Тест 7.4: В фазе 1 (движение по Красной) выезд из кармана между бульварами заблокирован");
 
-                // ТЕСТ 8: Интеграционный тест Form1 и рендеринга
+                // ТЕСТ 8: Интеграционный тест формы и графического рендеринга
                 using (var testForm = new Form1())
                 {
                     testForm.CreateControl();

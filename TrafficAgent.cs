@@ -92,7 +92,7 @@ namespace SAi_KR
                 neighborIncomingQueue += NeighborWest.Node.IncomingLanes.Take(2).Sum(l => l.GetQueueLength());
             state[6] = Math.Min(1.0, neighborIncomingQueue / 40.0);
 
-            // 8. Разность давлений (Max-Pressure differential): (Q_opposing - Q_green)
+            // 8. Разность транспортного давления (градиент очереди): (очередь_красный - очередь_зеленый)
             double deltaQ = (opposingQueue - greenQueue) / 30.0;
             state[7] = Math.Max(0.0, Math.Min(1.0, (deltaQ + 1.0) / 2.0));
 
@@ -218,8 +218,8 @@ namespace SAi_KR
             }
             else if (Node.CurrentState == LightState.Green)
             {
-                // Сообщаем перекрестку, что ИИ продлевает зеленый до maxGreen
-                // Без этого Intersection.Update() обрежет фазу по базовой длительности ГОСТ
+                // Сообщаем перекрестку, что ИИ продлевает зеленый до максимального времени фазы
+                // Без этого логика перекрестка ограничит фазу базовой длительностью по ГОСТ
                 Node.ExtendedGreenLimit = maxGreen;
             }
 
